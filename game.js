@@ -33,9 +33,7 @@ let wallSpaceWidth = oneBlockSize / 1.6;
 let wallOffset = (oneBlockSize - wallSpaceWidth) / 2;
 let wallInnerColor = "black";
 
-// we now create the map of the walls,
-// if 1 wall, if 0 not wall
-// 21 columns // 23 rows
+// map for the game 1 = wall, 2 = food, 3 = especial food
 let map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
@@ -128,7 +126,7 @@ let resetGame = () => {
     ];
     restartPacmanAndGhosts();
 };
-
+//manage collisions
 let onGhostCollision = (i) => {
     if (ghosts[i].state == DEAD){
         return;
@@ -144,7 +142,7 @@ let onGhostCollision = (i) => {
         restartPacmanAndGhosts();
     }
 };
-
+// check and update the game
 let update = () => {
     pacman.moveProcess();
     pacman.eat();
@@ -154,7 +152,10 @@ let update = () => {
         onGhostCollision(collisions[i]);
     }
     if(score >= 250){
-        alert ("You won");
+       confirm("You won, do you wish to play again?");
+       if(confirm){
+            resetGame();
+       }
     }
 };
 
@@ -301,6 +302,7 @@ createNewPacman();
 createGhosts();
 gameLoop();
 
+//binding keys 
 window.addEventListener("keydown", (event) => {
     let k = event.keyCode;
     setTimeout(() => {

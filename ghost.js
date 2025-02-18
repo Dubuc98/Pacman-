@@ -26,7 +26,7 @@ class Ghost {
         this.index = index;
         this.lastDazzle = null;
     }
-
+    //define what the different ghost states do
     setState(state) {
         if (state == DAZZLED)
             this.lastDazzle = Date.now();
@@ -69,18 +69,7 @@ class Ghost {
         this.randomTargetIndex = this.randomTargetIndex % 4;
         this.target = randomTargetsForGhosts[this.randomTargetIndex];
     }
-
-    // isGhostDead(){
-    //     for(i=0;i<ghosts.length;i++){
-    //         if(ghosts[i].state == DEAD){
-    //             this.target = {x:1, y:9};
-    //             if(this.x == this.target.x && this.y == this.target.y ){
-    //                 this.setState(ALIVE);
-    //             }       
-    //         }
-    //     }
-    // }
-
+    //principal function for controling ghost movement
     moveProcess() {
         switch(this.state){
             case DEAD: 
@@ -125,27 +114,6 @@ class Ghost {
                 console.log("idk");
         }
     }
-        // if(this.state == DEAD){
-        //     this.target = {x:oneBlockSize * 9, y:oneBlockSize * 11};
-        //     if(this.x >= this.target.x && this.y >= this.target.y && 
-        //         this.x <= this.target.x + oneBlockSize && this.y <= this.target.y + oneBlockSize){
-        //         this.setState(ALIVE);
-        //     }
-        // } 
-
-        // else if (this.isInRange()) {
-        //     this.target = { x: pacman.x, y: pacman.y };
-        // } else {
-        //     this.target = randomTargetsForGhosts[this.randomTargetIndex];
-        // }
-        // this.changeDirectionIfPossible();
-        // this.moveForwards();
-        // if (this.checkCollisions()) {
-        //     this.moveBackwards();
-        //     this.changeRandomDirection();
-        // }
-       
-
 
     moveBackwards() {
         switch (this.direction) {
@@ -332,7 +300,7 @@ class Ghost {
 
 let updateGhosts = () => {
     for (let i = 0; i < ghosts.length; i++) {
-        if (ghosts[i].state == DAZZLED && Date.now() - ghosts[i].lastDazzle > 5000)
+        if (ghosts[i].state == DAZZLED && Date.now() - ghosts[i].lastDazzle > 8000)
             ghosts[i].setState(ALIVE);
         ghosts[i].moveProcess();    
     }
