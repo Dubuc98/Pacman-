@@ -12,4 +12,5 @@ abajo, respectivamente.
 #Instalacion
 
 1.Haga una copia de este repositorio en su computadora (git clone https://github.com/Dubuc98/Pacman-.git).
+
 2. Abra el archivo pacman.HTML en su navegador y ya podra jugar sin problemas.
